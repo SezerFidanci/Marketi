@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Marketim</string>
+    <string name="trl_app_name">MARKETİM</string>
+    <string name="trl_login">Login</string>
+    <string name="trl_remember_me">Remember Me</string>
+    <string name="trl_hint_username">username</string>
+    <string name="trl_hint_password">password</string>
+</resources>
