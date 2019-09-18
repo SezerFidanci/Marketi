@@ -5,4 +5,6 @@
     <string name="trl_remember_me">Remember Me</string>
     <string name="trl_hint_username">username</string>
     <string name="trl_hint_password">password</string>
+    <string name="trl_orders">My Orders</string>
+    <string name="trl_logout">Logout</string>
 </resources>

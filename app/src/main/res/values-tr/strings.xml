@@ -6,4 +6,6 @@
     <string name="trl_remember_me">Beni Hatırla</string>
     <string name="trl_hint_username">kullaniciadi</string>
     <string name="trl_hint_password">parola</string>
+    <string name="trl_orders">Siparişlerim</string>
+    <string name="trl_logout">Çıkış Yap</string>
 </resources>

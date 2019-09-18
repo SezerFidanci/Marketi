@@ -1,6 +1,7 @@
 package com.kariyernet.marketim.ui.login;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -13,6 +14,7 @@ import android.widget.Toast;
 
 import com.kariyernet.marketim.App;
 import com.kariyernet.marketim.R;
+import com.kariyernet.marketim.ui.main.Main;
 
 public class Login extends AppCompatActivity implements LoginContract.View{
 
@@ -58,6 +60,9 @@ public class Login extends AppCompatActivity implements LoginContract.View{
                     Toast.makeText(mContext,"true",Toast.LENGTH_SHORT).show();
                     App.prefsSet.putBoolean("isKeepLogin",isKeepLogin);
                     App.prefsSet.commit();
+                    Intent mIntent = new Intent(Login.this, Main.class);
+                    Login.this.startActivity(mIntent);
+                    Login.this.finish();
                 }
                 else
                 {

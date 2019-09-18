@@ -1,13 +1,20 @@
 package com.kariyernet.marketim.ui.main;
 
-public class MainPresenter implements MainContract.Presenter{
+import com.kariyernet.marketim.App;
+import com.kariyernet.marketim.model.OrdersModel;
+import com.kariyernet.marketim.model.OrdersBase;
+
+import java.util.List;
+
+public class MainPresenter implements MainContract.Presenter,MainContract.Model.OnFinishedListener{
 
     private MainContract.View mView;
-
+    OrdersModel ordersModel;
 
     @Override
     public void setView(MainContract.View view) {
         mView = view;
+        ordersModel = new OrdersModel();
 
     }
 
@@ -18,11 +25,30 @@ public class MainPresenter implements MainContract.Presenter{
     }
 
     @Override
-    public void checkLogin() {
+    public void checkLogout() {
 
-
+        App.prefsSet.putBoolean("isKeepLogin",false);
+        App.prefsSet.commit();
 
     }
 
+    @Override
+    public void requestDataFromServer() {
 
+        if (mView != null) {
+           // mView.showProgress();
+        }
+        ordersModel.getOrderList(this);
+    }
+
+    @Override
+    public void onFinished(List<OrdersBase> ordersList) {
+
+        mView.setDataToRecyclerView(ordersList);
+    }
+
+    @Override
+    public void onFailure(Throwable t) {
+
+    }
 }

@@ -3,6 +3,13 @@ package com.kariyernet.marketim;
 import android.app.Application;
 import android.content.SharedPreferences;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.kariyernet.marketim.interfaces.APIService;
+
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
+
 
 public class App extends Application {
 
@@ -20,5 +27,13 @@ public class App extends Application {
 
 
 
+    }
+    public static APIService getApiService()
+    {
+        Gson gson = new GsonBuilder().setLenient().create();
+        Retrofit retrofit = new Retrofit.Builder().baseUrl(App.BASEURL).addConverterFactory(GsonConverterFactory.create(gson)).build();
+        APIService apis = retrofit.create(APIService.class);
+
+        return apis;
     }
 }

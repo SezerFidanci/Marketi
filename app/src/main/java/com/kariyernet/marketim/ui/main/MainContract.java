@@ -1,13 +1,25 @@
 package com.kariyernet.marketim.ui.main;
 
+import com.kariyernet.marketim.model.OrdersBase;
+
+import java.util.List;
+
 public class MainContract {
+
+
+    public interface Model {
+        interface OnFinishedListener {
+            void onFinished(List<OrdersBase> ordersList);
+            void onFailure(Throwable t);
+        }
+        void getOrderList(OnFinishedListener onFinishedListener);
+    }
 
     interface View
     {
         void bindView();
         void initOnClicks();
-        void setDate(String date);
-
+        void setDataToRecyclerView(List<OrdersBase> orderList);
 
     }
 
@@ -15,7 +27,8 @@ public class MainContract {
     {
         void setView(View view);
         void created();
-        void checkLogin();
+        void checkLogout();
+        void requestDataFromServer();
 
     }
 }
