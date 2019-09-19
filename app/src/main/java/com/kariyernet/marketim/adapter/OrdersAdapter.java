@@ -1,10 +1,14 @@
 package com.kariyernet.marketim.adapter;
 
 import android.content.Context;
+import android.media.Image;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.kariyernet.marketim.R;
 import com.kariyernet.marketim.model.OrdersBase;
@@ -38,10 +42,7 @@ public class OrdersAdapter extends RecyclerView.Adapter<OrdersAdapter.OrderViewH
         return viewerList.size();
     }
 
-    public interface OnSetProgress {
 
-        void itemChanged();
-    }
 
     public OrdersAdapter(List<OrdersBase> list) {
         this.viewerList = list;
@@ -52,11 +53,35 @@ public class OrdersAdapter extends RecyclerView.Adapter<OrdersAdapter.OrderViewH
 
 
         Context ctx;
+        TextView txtDate;
+        TextView txtMounth;
+        TextView txtMarketName;
+        TextView txtOrderName;
+        TextView txtProductPrice;
+        TextView txtProductState;
+        TextView txtOrderDetailsDesc;
+        TextView txtOrderDetailsSummaryPrice;
+        ImageView imgProductState;
+        LinearLayout linProductDetails;
+        String orderState;
+        boolean isDetailsVisible=false;
+
         public OrderViewHolder(View v) {
             super(v);
 
             ctx = v.getContext();
             v.setOnClickListener(this);
+
+            txtDate=v.findViewById(R.id.txtDate);
+            txtMounth=v.findViewById(R.id.txtMounth);
+            txtMarketName=v.findViewById(R.id.txtMarketName);
+            txtOrderName=v.findViewById(R.id.txtOrderName);
+            txtProductPrice=v.findViewById(R.id.txtProductPrice);
+            txtProductState=v.findViewById(R.id.txtProductState);
+            txtOrderDetailsDesc=v.findViewById(R.id.txtOrderDetailsDesc);
+            txtOrderDetailsSummaryPrice=v.findViewById(R.id.txtOrderDetailsSummaryPrice);
+            linProductDetails=v.findViewById(R.id.linProductDetails);
+            imgProductState=v.findViewById(R.id.imgProductState);
 
 
         }
@@ -65,10 +90,48 @@ public class OrdersAdapter extends RecyclerView.Adapter<OrdersAdapter.OrderViewH
         @Override
         public void onClick(View v) {
 
+            if(isDetailsVisible)
+            {
+                isDetailsVisible=false;
+                linProductDetails.setVisibility(View.GONE);
+            }
+            else
+            {
+                isDetailsVisible=true;
+                linProductDetails.setVisibility(View.VISIBLE);
+            }
         }
 
         public void bindData(OrdersBase item) {
 
+            txtDate.setText(item.getDate());
+            txtMounth.setText(item.getMonth());
+            txtMarketName.setText(item.getMarketName());
+            txtOrderName.setText(item.getOrderName());
+            txtProductPrice.setText(String.valueOf(item.getProductPrice())+" TL");
+            
+
+            orderState = item.getProductState();
+            if(orderState.equals("Yolda"))
+            {
+                txtProductState.setTextColor(ctx.getResources().getColor(R.color.colorOrderInShipping));
+                imgProductState.setImageDrawable(ctx.getResources().getDrawable(R.drawable.ic_order_state_inshipping));
+            }
+            else if(orderState.equals("Hazırlanıyor"))
+            {
+                txtProductState.setTextColor(ctx.getResources().getColor(R.color.colorOrderPrepare));
+                imgProductState.setImageDrawable(ctx.getResources().getDrawable(R.drawable.ic_order_state_prepare));
+            }
+            else if(orderState.equals("Onay Bekliyor"))
+            {
+                txtProductState.setTextColor(ctx.getResources().getColor(R.color.colorOrderApproval));
+                imgProductState.setImageDrawable(ctx.getResources().getDrawable(R.drawable.ic_order_state_approval));
+            }
+
+            txtProductState.setText(item.getProductState());
+
+            txtOrderDetailsDesc.setText(item.getProductDetail().getOrderDetail());
+            txtOrderDetailsSummaryPrice.setText(String.valueOf(item.getProductDetail().getSummaryPrice())+" TL");
 
         }
     }

@@ -36,7 +36,7 @@ public class MainPresenter implements MainContract.Presenter,MainContract.Model.
     public void requestDataFromServer() {
 
         if (mView != null) {
-           // mView.showProgress();
+            mView.showLoadingDialog();
         }
         ordersModel.getOrderList(this);
     }
@@ -45,10 +45,11 @@ public class MainPresenter implements MainContract.Presenter,MainContract.Model.
     public void onFinished(List<OrdersBase> ordersList) {
 
         mView.setDataToRecyclerView(ordersList);
+        mView.hideLoadingDialog();
     }
 
     @Override
     public void onFailure(Throwable t) {
-
+        mView.hideLoadingDialog();
     }
 }

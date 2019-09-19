@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content"
+    android:paddingLeft="@dimen/_5sdp"
+    android:paddingRight="@dimen/_5sdp">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -18,12 +20,14 @@
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="top"
                 android:orientation="vertical">
 
                 <TextView
                     android:id="@+id/txtDate"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:fontFamily="@font/robotobold"
                     android:gravity="center"
                     android:text="08"
                     android:textSize="@dimen/_25ssp" />
@@ -32,6 +36,7 @@
                     android:id="@+id/txtMounth"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:fontFamily="@font/robotoregular"
                     android:gravity="center"
                     android:text="Mayıs"
                     android:textSize="@dimen/_13ssp" />
@@ -40,6 +45,8 @@
             <View
                 android:layout_width="@dimen/_1sdp"
                 android:layout_height="match_parent"
+                android:layout_marginLeft="@dimen/_5sdp"
+                android:layout_marginRight="@dimen/_5sdp"
                 android:background="@color/colorEditBorder" />
 
             <LinearLayout
@@ -48,74 +55,122 @@
                 android:layout_weight="1"
                 android:orientation="vertical">
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:id="@+id/txtMarketName"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:gravity="left"
-                        android:text="Mayıs"
-                        android:textSize="@dimen/_13ssp" />
-
-                </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:orientation="horizontal">
+                    android:orientation="vertical">
 
-                    <TextView
-                        android:id="@+id/txtOrderName"
+                    <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
+                        android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:gravity="left"
-                        android:text="Mayıs"
-                        android:textSize="@dimen/_13ssp" />
+                        android:orientation="horizontal">
 
-                    <TextView
-                        android:id="@+id/txtProductPrice"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:gravity="left"
-                        android:text="14.5"
-                        android:textSize="@dimen/_13ssp" />
+
+                        <TextView
+                            android:id="@+id/txtMarketName"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:fontFamily="@font/robotobold"
+                            android:gravity="left"
+                            android:text="Mayıs"
+                            android:textSize="@dimen/_13ssp" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/txtOrderName"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:fontFamily="@font/robotoregular"
+                            android:gravity="left"
+                            android:text="Mayıs"
+                            android:textSize="@dimen/_11ssp" />
+
+                        <TextView
+                            android:id="@+id/txtProductPrice"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:fontFamily="@font/robotobold"
+                            android:gravity="left"
+                            android:text="14.5"
+                            android:textSize="@dimen/_11ssp" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:id="@+id/imgProductState"
+                            android:layout_width="@dimen/_16sdp"
+                            android:layout_height="@dimen/_16sdp"
+                            android:src="@drawable/ic_order_state_inshipping" />
+
+                        <TextView
+                            android:id="@+id/txtProductState"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:fontFamily="@font/robotoregular"
+                            android:gravity="left|center_horizontal"
+                            android:paddingLeft="@dimen/_3sdp"
+                            android:text="Hazırlanıyor"
+                            android:textSize="@dimen/_13ssp" />
+
+                    </LinearLayout>
+
 
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/linProductDetails"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:orientation="horizontal">
+                    android:background="@color/colorOrderDetailsBackground"
+                    android:orientation="horizontal"
+                    android:padding="@dimen/_5sdp"
+                    android:visibility="gone">
 
-                    <TextView
-                        android:id="@+id/txtProductState"
+                    <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:gravity="left"
-                        android:text="Hazırlanıyor"
-                        android:textSize="@dimen/_13ssp" />
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="@drawable/linearlayout_order_details_background"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/txtOrderDetailsDesc"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:fontFamily="@font/robotoregular"
+                            android:text="asdasdas"
+                            android:textSize="@dimen/_13ssp" />
+
+                        <TextView
+                            android:id="@+id/txtOrderDetailsSummaryPrice"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:fontFamily="@font/robotobold"
+                            android:text="123"
+                            android:textSize="@dimen/_13ssp" />
+                    </LinearLayout>
 
                 </LinearLayout>
-
-
             </LinearLayout>
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:orientation="horizontal">
-
-
         </LinearLayout>
 
 

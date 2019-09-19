@@ -7,4 +7,8 @@
     <string name="trl_hint_password">password</string>
     <string name="trl_orders">My Orders</string>
     <string name="trl_logout">Logout</string>
+    <string name="trl_please_wait">Please wait</string>
+    <string name="trl_logout_message">Will be logout. Are yor sure ?</string>
+    <string name="trl_yes">Yes</string>
+    <string name="trl_no">No</string>
 </resources>

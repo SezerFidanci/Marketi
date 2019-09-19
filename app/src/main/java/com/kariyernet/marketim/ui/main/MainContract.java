@@ -20,6 +20,8 @@ public class MainContract {
         void bindView();
         void initOnClicks();
         void setDataToRecyclerView(List<OrdersBase> orderList);
+        void showLoadingDialog();
+        void hideLoadingDialog();
 
     }
 

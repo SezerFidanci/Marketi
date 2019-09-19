@@ -8,4 +8,8 @@
     <string name="trl_hint_password">parola</string>
     <string name="trl_orders">Siparişlerim</string>
     <string name="trl_logout">Çıkış Yap</string>
+    <string name="trl_please_wait">Lütfen bekleyin</string>
+    <string name="trl_logout_message">Oturum kapatılacak.Emin misiniz?</string>
+    <string name="trl_yes">Evet</string>
+    <string name="trl_no">Hayır</string>
 </resources>

@@ -8,4 +8,13 @@
     <color name="colorButtonRedDefault">#ed2939</color>
     <color name="colorButtonRedClick">#f44d5a</color>
     <color name="colorWhite">#ffffff</color>
+
+    <color name="colorOrderPrepare">#ff8d02</color>
+    <color name="colorOrderInShipping">#4dae50</color>
+    <color name="colorOrderApproval">#ed2939</color>
+    <color name="colorPleaseWait">#4dae50</color>
+    <color name="colorOrderDetailsBackground">#e1e3e4</color>
+    <color name="colorOrderDetailsLinearLayoutBackground">#bbbcbc</color>
+
+
 </resources>
