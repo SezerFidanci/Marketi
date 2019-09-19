@@ -36,7 +36,7 @@
                     android:textSize="@dimen/_23ssp" />
 
                 <TextView
-                    android:id="@+id/txtMounth"
+                    android:id="@+id/txtMonth"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:fontFamily="@font/robotoregular"
@@ -126,8 +126,8 @@
 
                         <ImageView
                             android:id="@+id/imgProductState"
-                            android:layout_width="@dimen/_16sdp"
-                            android:layout_height="@dimen/_16sdp"
+                            android:layout_width="@dimen/_12sdp"
+                            android:layout_height="@dimen/_12sdp"
                             android:src="@drawable/ic_order_state_inshipping" />
 
                         <TextView

@@ -41,38 +41,64 @@
             android:layout_weight="1"
             android:orientation="vertical">
 
+            <LinearLayout
+                android:id="@+id/linNoData"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/_100sdp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/ic_no_data" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/robotoregular"
+                    android:gravity="center_horizontal"
+                    android:padding="@dimen/_10sdp"
+                    android:text="@string/trl_no_data_message" />
+            </LinearLayout>
+
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/rvOrders"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" />
+                android:layout_height="wrap_content" />
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:paddingBottom="@dimen/_5sdp"
+            android:paddingTop="@dimen/_5sdp"
             android:orientation="horizontal">
 
             <Button
                 android:id="@+id/btnOrders"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:textColor="@color/colorPrimary"
                 android:layout_marginLeft="@dimen/_5sdp"
                 android:layout_marginRight="@dimen/_5sdp"
+                android:layout_weight="1"
                 android:background="@drawable/button_orders"
-                android:text="@string/trl_orders" />
+                android:text="@string/trl_orders"
+                android:textColor="@color/colorPrimary" />
 
             <Button
                 android:id="@+id/btnLogout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
                 android:layout_marginLeft="@dimen/_5sdp"
                 android:layout_marginRight="@dimen/_5sdp"
+                android:layout_weight="1"
                 android:background="@drawable/button_logout"
-                android:textColor="@color/colorWhite"
-                android:text="@string/trl_logout" />
+                android:text="@string/trl_logout"
+                android:textColor="@color/colorWhite" />
         </LinearLayout>
     </LinearLayout>
 

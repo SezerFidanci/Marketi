@@ -6,7 +6,7 @@ import com.kariyernet.marketim.model.OrdersBase;
 
 import java.util.List;
 
-public class MainPresenter implements MainContract.Presenter,MainContract.Model.OnFinishedListener{
+public class MainPresenter implements MainContract.Presenter, MainContract.Model.OnFinishedListener {
 
     private MainContract.View mView;
     OrdersModel ordersModel;
@@ -25,9 +25,9 @@ public class MainPresenter implements MainContract.Presenter,MainContract.Model.
     }
 
     @Override
-    public void checkLogout() {
+    public void checkLogout() {  // Logout metodu
 
-        App.prefsSet.putBoolean("isKeepLogin",false);
+        App.prefsSet.putBoolean("isKeepLogin", false);
         App.prefsSet.commit();
 
     }
@@ -36,9 +36,18 @@ public class MainPresenter implements MainContract.Presenter,MainContract.Model.
     public void requestDataFromServer() {
 
         if (mView != null) {
-            mView.showLoadingDialog();
+            if (App.isNetworkAvailable(mView.getContext()))
+            {
+                mView.showLoadingDialog();
+                ordersModel.getOrderList(this);
+            }
+            else
+            {
+                mView.showNoInternetConnection();
+            }
         }
-        ordersModel.getOrderList(this);
+
+
     }
 
     @Override
@@ -51,5 +60,6 @@ public class MainPresenter implements MainContract.Presenter,MainContract.Model.
     @Override
     public void onFailure(Throwable t) {
         mView.hideLoadingDialog();
+        mView.showWrongData();
     }
 }

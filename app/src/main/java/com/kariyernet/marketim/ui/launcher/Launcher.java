@@ -18,6 +18,13 @@ public class Launcher extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.act_launcher);
 
+        /*
+        * Daha önce kullanıcı session oluşturmuşsa yani login olmuşsa;
+        * Main ekranına
+        * Login olmamışsa
+        * Login ekranına yönlendirme
+        */
+
         boolean isLogin = App.prefsGet.getBoolean("isKeepLogin", false);
         Intent redIntent=null;
         if(isLogin)

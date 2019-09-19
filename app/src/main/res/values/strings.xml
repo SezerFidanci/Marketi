@@ -11,5 +11,8 @@
     <string name="trl_logout_message">Will be logout. Are yor sure ?</string>
     <string name="trl_yes">Yes</string>
     <string name="trl_no">No</string>
-    <string name="trl_login_error">Please check your login input</string>
+    <string name="trl_login_error">Please check your fields</string>
+    <string name="trl_no_internet_connection">Sorry, you don\'t have internet connection :(</string>
+    <string name="trl_no_data_message">NO DATA FOUND</string>
+    <string name="trl_something_went_wrong">Something went wrong.Please try again</string>
 </resources>

@@ -2,21 +2,19 @@ package com.kariyernet.marketim.ui.main;
 
 import android.content.Context;
 import android.content.Intent;
-import android.os.Build;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.kariyernet.marketim.R;
 import com.kariyernet.marketim.adapter.OrdersAdapter;
 import com.kariyernet.marketim.model.OrdersBase;
-import com.kariyernet.marketim.ui.launcher.Launcher;
 import com.kariyernet.marketim.ui.login.Login;
 
 import java.util.List;
@@ -29,12 +27,14 @@ public class Main extends AppCompatActivity implements MainContract.View {
     RecyclerView rvOrders;
     Button btnOrders;
     Button btnLogout;
-
+    LinearLayout linNoData;
     MainPresenter mMainPresenter;
     Context mContext;
     OrdersAdapter ordersAdapter;
     SweetAlertDialog swLoadingDialog;
     SweetAlertDialog swLogoutDialog;
+    SweetAlertDialog swError;
+
     Toolbar toolbar;
     TextView toolbarTitle;
     @Override
@@ -42,10 +42,10 @@ public class Main extends AppCompatActivity implements MainContract.View {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.act_main);
-
-
-
         mContext=this;
+
+
+        // MVP modeline göre MainPresenter'in tanımlanması
         mMainPresenter = new MainPresenter();
         mMainPresenter.setView(this);
         mMainPresenter.created();
@@ -55,12 +55,13 @@ public class Main extends AppCompatActivity implements MainContract.View {
 
 
     @Override
-    public void bindView() {
+    public void bindView() {  // View 'ların bind edilmesi
 
         rvOrders = findViewById(R.id.rvOrders);
         btnOrders = findViewById(R.id.btnOrders);
         btnLogout = findViewById(R.id.btnLogout);
         toolbar = findViewById(R.id.toolbar);
+        linNoData = findViewById(R.id.linNoData);
         toolbarTitle= toolbar.findViewById(R.id.toolbarTitle);
         toolbarTitle.setText(mContext.getResources().getString(R.string.app_name));
 
@@ -76,7 +77,7 @@ public class Main extends AppCompatActivity implements MainContract.View {
     }
 
     @Override
-    public void initOnClicks() {
+    public void initOnClicks() { // View Click işlemleri (Orders listesinin getirilmesi ve Logout işlemi)
 
         btnOrders.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -118,25 +119,58 @@ public class Main extends AppCompatActivity implements MainContract.View {
     }
 
     @Override
-    public void setDataToRecyclerView(List<OrdersBase> orderList) {
+    public void setDataToRecyclerView(List<OrdersBase> orderList) {  // Servisten gelen datanın adapter'e aktarılması, hiç veri olmaması durumunda ilgili uyarının gösterilmesi
 
-        ordersAdapter = new OrdersAdapter(orderList);
-        rvOrders.setAdapter(ordersAdapter);
-        LinearLayoutManager layoutManager
-                = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
-        rvOrders.setLayoutManager(layoutManager);
-        ordersAdapter.notifyDataSetChanged();
+        if(orderList.size()>0)
+        {
+
+            ordersAdapter = new OrdersAdapter(orderList);
+            rvOrders.setAdapter(ordersAdapter);
+            LinearLayoutManager layoutManager
+                    = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
+            rvOrders.setLayoutManager(layoutManager);
+            ordersAdapter.notifyDataSetChanged();
+            linNoData.setVisibility(View.GONE);
+        }
+        else
+        {
+            linNoData.setVisibility(View.VISIBLE);
+        }
+
 
     }
 
     @Override
-    public void showLoadingDialog() {
+    public void showLoadingDialog() { // Servisten data getiriliken Loading dialogu gösterilmesi
         swLoadingDialog.show();
     }
 
     @Override
-    public void hideLoadingDialog() {
+    public void hideLoadingDialog() { // Servisten data getiriliken Loading dialogu gizlenmesi
         swLoadingDialog.dismiss();
+    }
+
+    @Override
+    public void showWrongData() {  // Servis ilgili gelen data 'da problem olması durumunda uyarı gösterilmesi
+        swError = new SweetAlertDialog(mContext, SweetAlertDialog.WARNING_TYPE);
+        swError.getProgressHelper().setBarColor(mContext.getResources().getColor(R.color.colorPleaseWait));
+        swError.setTitleText(mContext.getString(R.string.trl_something_went_wrong));
+        swError.setCancelable(false);
+        swError.show();
+    }
+
+    @Override
+    public Context getContext() {
+        return mContext;
+    }
+
+    @Override
+    public void showNoInternetConnection() {  // Kullanıcının internen bağlantısı olmaması durumunda uyarı gösterilmesi
+        swError = new SweetAlertDialog(mContext, SweetAlertDialog.WARNING_TYPE);
+        swError.getProgressHelper().setBarColor(mContext.getResources().getColor(R.color.colorPleaseWait));
+        swError.setTitleText(mContext.getString(R.string.trl_no_internet_connection));
+        swError.setCancelable(false);
+        swError.show();
     }
 
 

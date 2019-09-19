@@ -1,15 +1,10 @@
 package com.kariyernet.marketim.ui.login;
 
-import android.widget.Toast;
-
-import com.kariyernet.marketim.ui.main.MainContract;
 import com.kariyernet.marketim.utils.Constants;
 
 public class LoginPresenter implements LoginContract.Presenter{
 
     private LoginContract.View mView;
-
-
     @Override
     public void setView(LoginContract.View view) {
         mView = view;
@@ -24,7 +19,7 @@ public class LoginPresenter implements LoginContract.Presenter{
 
 
     @Override
-    public boolean checkLogin(String uName,String uPass) {
+    public boolean checkLogin(String uName,String uPass) { // Login metodu
 
         if(uName.equals(Constants.USERNAME) && uPass.equals(Constants.USERPASS))
         {

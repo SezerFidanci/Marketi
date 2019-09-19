@@ -11,6 +11,10 @@ import retrofit2.Response;
 
 public class OrdersModel implements MainContract.Model {
 
+    /*
+    * Sipariş listesi, daha önce APIService interface'i içerisinde tanımlanan getOrderList() metodundan alınacak gelen data,
+    * OrderBase modeline ve alt model olan OrderDetails modeline aktarılır.
+    * */
     @Override
     public void getOrderList(final OnFinishedListener onFinishedListener) {
         Call<List<OrdersBase>> callLogout =  App.getApiService().getOrderList();

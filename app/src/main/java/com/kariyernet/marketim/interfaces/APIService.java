@@ -11,5 +11,5 @@ import retrofit2.http.GET;
 public interface APIService {
 
     @GET("/")
-    Call<List<OrdersBase>> getOrderList();
+    Call<List<OrdersBase>> getOrderList(); // Sipariş listesini alacağımız servis ve servisten gelen data'nın aktarılacağı model
 }
