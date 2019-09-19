@@ -2,23 +2,27 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:background="@color/colorWhite"
     android:paddingLeft="@dimen/_5sdp"
     android:paddingRight="@dimen/_5sdp">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
+
         android:orientation="vertical">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:orientation="horizontal">
+
+            android:orientation="horizontal"
+            android:paddingTop="@dimen/_3sdp"
+            android:paddingBottom="@dimen/_3sdp">
 
             <LinearLayout
-                android:layout_width="wrap_content"
+
+                android:layout_width="@dimen/_55sdp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="top"
                 android:orientation="vertical">
@@ -29,8 +33,7 @@
                     android:layout_height="match_parent"
                     android:fontFamily="@font/robotobold"
                     android:gravity="center"
-                    android:text="08"
-                    android:textSize="@dimen/_25ssp" />
+                    android:textSize="@dimen/_23ssp" />
 
                 <TextView
                     android:id="@+id/txtMounth"
@@ -38,8 +41,7 @@
                     android:layout_height="match_parent"
                     android:fontFamily="@font/robotoregular"
                     android:gravity="center"
-                    android:text="Mayıs"
-                    android:textSize="@dimen/_13ssp" />
+                    android:textSize="@dimen/_12ssp" />
             </LinearLayout>
 
             <View
@@ -73,10 +75,17 @@
                             android:id="@+id/txtMarketName"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
+                            android:layout_weight="1"
                             android:fontFamily="@font/robotobold"
-                            android:gravity="left"
-                            android:text="Mayıs"
-                            android:textSize="@dimen/_13ssp" />
+                            android:gravity="left|center_vertical"
+                            android:textSize="@dimen/_12ssp" />
+
+                        <ImageView
+                            android:id="@+id/imgDetailsArrow"
+                            android:layout_width="wrap_content"
+                            android:layout_height="@dimen/_16sdp"
+                            android:layout_weight="1"
+                            android:src="@drawable/ic_right_arrow" />
 
                     </LinearLayout>
 
@@ -84,7 +93,9 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:orientation="horizontal">
+                        android:orientation="horizontal"
+                        android:paddingTop="@dimen/_3sdp"
+                        android:paddingBottom="@dimen/_3sdp">
 
                         <TextView
                             android:id="@+id/txtOrderName"
@@ -93,8 +104,9 @@
                             android:layout_weight="1"
                             android:fontFamily="@font/robotoregular"
                             android:gravity="left"
-                            android:text="Mayıs"
-                            android:textSize="@dimen/_11ssp" />
+                            android:singleLine="true"
+                            android:ellipsize="end"
+                            android:textSize="@dimen/_10ssp" />
 
                         <TextView
                             android:id="@+id/txtProductPrice"
@@ -102,8 +114,7 @@
                             android:layout_height="match_parent"
                             android:fontFamily="@font/robotobold"
                             android:gravity="left"
-                            android:text="14.5"
-                            android:textSize="@dimen/_11ssp" />
+                            android:textSize="@dimen/_10ssp" />
 
                     </LinearLayout>
 
@@ -125,55 +136,74 @@
                             android:layout_height="match_parent"
                             android:fontFamily="@font/robotoregular"
                             android:gravity="left|center_horizontal"
-                            android:paddingLeft="@dimen/_3sdp"
-                            android:text="Hazırlanıyor"
-                            android:textSize="@dimen/_13ssp" />
+                            android:paddingLeft="@dimen/_5sdp"
+                            android:textSize="@dimen/_11ssp" />
 
                     </LinearLayout>
 
 
                 </LinearLayout>
 
-                <LinearLayout
-                    android:id="@+id/linProductDetails"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:background="@color/colorOrderDetailsBackground"
-                    android:orientation="horizontal"
-                    android:padding="@dimen/_5sdp"
-                    android:visibility="gone">
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:background="@drawable/linearlayout_order_details_background"
-                        android:orientation="horizontal">
-
-                        <TextView
-                            android:id="@+id/txtOrderDetailsDesc"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_weight="1"
-                            android:fontFamily="@font/robotoregular"
-                            android:text="asdasdas"
-                            android:textSize="@dimen/_13ssp" />
-
-                        <TextView
-                            android:id="@+id/txtOrderDetailsSummaryPrice"
-                            android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
-                            android:fontFamily="@font/robotobold"
-                            android:text="123"
-                            android:textSize="@dimen/_13ssp" />
-                    </LinearLayout>
-
-                </LinearLayout>
             </LinearLayout>
+
+
         </LinearLayout>
 
 
+        <LinearLayout
+            android:id="@+id/linProductDetails"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:background="@color/colorOrderDetailsBackground"
+            android:orientation="horizontal"
+            android:padding="@dimen/_5sdp"
+            android:visibility="gone">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="@dimen/_55sdp"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/linearlayout_order_details_background"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/txtOrderDetailsDesc"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/robotoregular"
+                        android:gravity="center_vertical"
+                        android:text="asdasdas"
+                        android:textSize="@dimen/_12ssp" />
+
+                    <TextView
+                        android:id="@+id/txtOrderDetailsSummaryPrice"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/robotobold"
+                        android:text="123"
+                        android:textSize="@dimen/_12ssp" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
     </LinearLayout>
 
 </LinearLayout>

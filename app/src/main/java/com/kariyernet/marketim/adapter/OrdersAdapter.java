@@ -62,6 +62,7 @@ public class OrdersAdapter extends RecyclerView.Adapter<OrdersAdapter.OrderViewH
         TextView txtOrderDetailsDesc;
         TextView txtOrderDetailsSummaryPrice;
         ImageView imgProductState;
+        ImageView imgDetailsArrow;
         LinearLayout linProductDetails;
         String orderState;
         boolean isDetailsVisible=false;
@@ -82,6 +83,7 @@ public class OrdersAdapter extends RecyclerView.Adapter<OrdersAdapter.OrderViewH
             txtOrderDetailsSummaryPrice=v.findViewById(R.id.txtOrderDetailsSummaryPrice);
             linProductDetails=v.findViewById(R.id.linProductDetails);
             imgProductState=v.findViewById(R.id.imgProductState);
+            imgDetailsArrow=v.findViewById(R.id.imgDetailsArrow);
 
 
         }
@@ -94,11 +96,13 @@ public class OrdersAdapter extends RecyclerView.Adapter<OrdersAdapter.OrderViewH
             {
                 isDetailsVisible=false;
                 linProductDetails.setVisibility(View.GONE);
+                imgDetailsArrow.setImageDrawable(ctx.getResources().getDrawable(R.drawable.ic_right_arrow));
             }
             else
             {
                 isDetailsVisible=true;
                 linProductDetails.setVisibility(View.VISIBLE);
+                imgDetailsArrow.setImageDrawable(ctx.getResources().getDrawable(R.drawable.ic_down_arrow));
             }
         }
 

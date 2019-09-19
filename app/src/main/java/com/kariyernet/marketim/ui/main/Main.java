@@ -2,13 +2,16 @@ package com.kariyernet.marketim.ui.main;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.kariyernet.marketim.R;
 import com.kariyernet.marketim.adapter.OrdersAdapter;
@@ -32,10 +35,16 @@ public class Main extends AppCompatActivity implements MainContract.View {
     OrdersAdapter ordersAdapter;
     SweetAlertDialog swLoadingDialog;
     SweetAlertDialog swLogoutDialog;
+    Toolbar toolbar;
+    TextView toolbarTitle;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.act_main);
+
+
+
         mContext=this;
         mMainPresenter = new MainPresenter();
         mMainPresenter.setView(this);
@@ -43,19 +52,26 @@ public class Main extends AppCompatActivity implements MainContract.View {
 
     }
 
+
+
     @Override
     public void bindView() {
+
         rvOrders = findViewById(R.id.rvOrders);
         btnOrders = findViewById(R.id.btnOrders);
         btnLogout = findViewById(R.id.btnLogout);
+        toolbar = findViewById(R.id.toolbar);
+        toolbarTitle= toolbar.findViewById(R.id.toolbarTitle);
+        toolbarTitle.setText(mContext.getResources().getString(R.string.app_name));
+
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
+        getSupportActionBar().setDisplayShowHomeEnabled(false);
 
         swLoadingDialog = new SweetAlertDialog(mContext, SweetAlertDialog.PROGRESS_TYPE);
         swLoadingDialog.getProgressHelper().setBarColor(mContext.getResources().getColor(R.color.colorPleaseWait));
         swLoadingDialog.setTitleText(mContext.getString(R.string.trl_please_wait));
         swLoadingDialog.setCancelable(false);
-
-
-
         mMainPresenter.requestDataFromServer();
     }
 

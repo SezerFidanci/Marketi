@@ -16,6 +16,8 @@ import com.kariyernet.marketim.App;
 import com.kariyernet.marketim.R;
 import com.kariyernet.marketim.ui.main.Main;
 
+import cn.pedant.SweetAlert.SweetAlertDialog;
+
 public class Login extends AppCompatActivity implements LoginContract.View{
 
     Button btnLogin;
@@ -24,6 +26,7 @@ public class Login extends AppCompatActivity implements LoginContract.View{
     Switch swKeepLogin;
     boolean isKeepLogin=false;
     LoginPresenter mLoginPresenter;
+    SweetAlertDialog swLoginError;
     Context mContext;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +37,7 @@ public class Login extends AppCompatActivity implements LoginContract.View{
         mLoginPresenter = new LoginPresenter();
         mLoginPresenter.setView(this);
         mLoginPresenter.created();
+
     }
 
     @Override
@@ -56,8 +60,6 @@ public class Login extends AppCompatActivity implements LoginContract.View{
                 boolean loginCheck = mLoginPresenter.checkLogin(uName,uPass);
                 if(loginCheck)
                 {
-
-                    Toast.makeText(mContext,"true",Toast.LENGTH_SHORT).show();
                     App.prefsSet.putBoolean("isKeepLogin",isKeepLogin);
                     App.prefsSet.commit();
                     Intent mIntent = new Intent(Login.this, Main.class);
@@ -66,7 +68,11 @@ public class Login extends AppCompatActivity implements LoginContract.View{
                 }
                 else
                 {
-                    Toast.makeText(mContext,"false",Toast.LENGTH_SHORT).show();
+                    swLoginError = new SweetAlertDialog(mContext, SweetAlertDialog.WARNING_TYPE);
+                    swLoginError.getProgressHelper().setBarColor(mContext.getResources().getColor(R.color.colorPleaseWait));
+                    swLoginError.setTitleText(mContext.getString(R.string.trl_login_error));
+                    swLoginError.setCancelable(false);
+                    swLoginError.show();
                 }
             }
         });

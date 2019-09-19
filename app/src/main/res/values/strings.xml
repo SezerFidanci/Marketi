@@ -11,4 +11,5 @@
     <string name="trl_logout_message">Will be logout. Are yor sure ?</string>
     <string name="trl_yes">Yes</string>
     <string name="trl_no">No</string>
+    <string name="trl_login_error">Please check your login input</string>
 </resources>
